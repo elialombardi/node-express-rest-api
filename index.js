@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const server = http.createServer(app);
 
-const port = 3000
+const port = 3000;
 
 app.get('/api/users', function(req, res) {
     res.json([
