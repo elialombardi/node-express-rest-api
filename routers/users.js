@@ -13,28 +13,14 @@ router.route('/users')
         });
     })
     .post(function(req, res) {
-        let user = new User({
-            name: 'Maria'
-        });
+        // let user = new User({
+        //     name: 'Maria'
+        // });
         
-        user.save().then(
-            user => res.json(user), 
-            err => res.json(err)
-        );
-
-        // try {
-        //     user.save().then(function(err) {
-                
-        //         if (err) throw err;
-
-        //         res.json('User saved successfully!');
-        //     });
-
-        // } catch(e) {
-        //     console.log(e);
-        //     res.json('An error occurred.')
-        // }
-        
+        // user.save().then(
+        //     user => res.json(user), 
+        //     err => res.json(err)
+        // );        
     })
     .delete((req, res) => {
         User.remove({}).then((succ) => {
