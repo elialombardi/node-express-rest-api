@@ -12,6 +12,8 @@
   "dependencies": {
     "bluebird": "^3.4.3",
     "body-parser": "^1.15.2",
-    "mongoose": "^4.5.10"
+    "mongoose": "^4.5.10",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0"
   }
 }
