@@ -12,18 +12,21 @@ mongoose.connect('mongodb://localhost/test');
 
 // Mongoose: mpromise (mongoose's default promise library) is deprecated
 mongoose.Promise = require("bluebird");
-
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log(`we're connected`);
-});
+db.once('open', () => console.log(`Database connected`));
 
 
-const port = 3000;
+// Express config
+const port = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
 
+app.use('/', bodyParser.json());
+
+
+// Routes
 const userRouter = require('./routers/users');
 
 app.use('/api', userRouter);
 
-server.listen(3000, () => console.log(`Rest service running on port ${port}`));
+server.listen(port, () => console.log(`Rest service running on port ${port}`));

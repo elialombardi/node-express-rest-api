@@ -8,21 +8,29 @@ let userSchema = mongoose.Schema({
     updated_at: Date
 });
 
-userSchema.pre('save', function(next) {
+let setDates = function (next) {
+  console.log('pre');
   // get the current date
-  var currentDate = new Date();
+  let currentDate = new Date();
   
   // change the updated_at field to current date
   this.updated_at = currentDate;
+
+  console.log(this.name);
 
   // if created_at doesn't exist, add to that field
   if (!this.created_at)
     this.created_at = currentDate;
 
-    console.log('pre');
-
   next();
-});
+}
+
+userSchema.pre('save', setDates);
+
+userSchema.methods.updateUserData = function(newUser) {
+  this.name = newUser.name;
+  return this;
+}
 
 const User = mongoose.model('User', userSchema);
 
